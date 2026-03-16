@@ -1,0 +1,81 @@
+<%- include('partials/head') %>
+<%- include('partials/navbar') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobyList | <%= member.username %></title>
+</head>
+<body>
+
+    <main class="main-container">
+        <div class="main-header">
+            <div class="cover"></div>
+            <img class="profile-picture" src="<%= member.avatarURL({dynamic: true}) %>">
+            <h3 class="username"><%- member.username %>#<%- member.discriminator %></h3>
+            <% if(user) { %>
+              <button type="button" class="edit-btn" data-bs-toggle="modal" data-bs-target="#modal"><i class='bx bx-pencil'></i> Editar</button>
+            <% } %>
+            <form method="post">
+            <div class="modal" id="modal" tabindex="-1">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Editando el perfil de <%= member.username %></h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <textarea width="200" name="biography" id="biography" rows="4" placeholder="Los michis son adorables 🥰"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="description"><%= pdata ? (pdata.biography ? pdata.biography : 'La descripción de ' +member.username+ 'parece estar demasiado despejada. 😴') : 'La descripción de ' +member.username+ 'parece estar demasiado despejada. 😴'%></div>
+        </div>
+        <div class="bots-container">
+          <% if(bots.filter(a => (member.id === a.OwnerID)).length <= 0) { %>
+              <div class="nobots">
+                <strong><i class='bx bx-x-circle red-circle'></i> Parece que <%= member.username %> no tiene bots.</strong>
+              </div>
+            <%}%>
+            <h2><i class='bx bx-bot'></i> Bots del usuario</h2>
+            <% bots.filter(a => (member.id === a.OwnerID)).map(a => { %>
+              <% if(a.Status === 'verified') { %>
+                <div class="ccard">
+                  <div class="card__header">
+                      <img class="bot-avatar" src="<%= a.BotAvatar %>" alt="<%= a.BotUsername %>">
+                      <h3 class="bot-username"><%= a.BotUsername %></h4>
+                  </div>
+                  <div class="card__body">
+                      <p class="bot-description"><%= a.shortDesc %></p>
+                  </div>
+                  <div class="card__footer">
+                      <div class="bot-buttons">
+                          <a class="bot-view" href="#">Ver</a>
+                          <a class="bot-add" href="#">Añadir</a>
+                      </div>
+                      
+                      <div class="bot-info">
+                          <img class="author-pic" src="https://cdn.discordapp.com/avatars/<%= a.OwnerID %>/<%= a.OwnerAvatar %>?size=128" alt="<%= a.OwnerName %> avatar">
+                          <h4 class="author-username"><%= a.OwnerName %></h4>
+                      </div>
+                  </div>
+              </div>
+             <% } %>
+            <% }) %>
+        </div>
+    </main>
+    <script>
+        function edit(){
+            location.href="/user/<%= member.id %>/edit";
+        }
+    </script>
+</body>
+</html>

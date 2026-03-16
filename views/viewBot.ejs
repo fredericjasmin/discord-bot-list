@@ -1,0 +1,20 @@
+<%- include('partials/head') %>
+<%- include('partials/navbar') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= botsito.username %> | MobyList </title>
+</head>
+<body>
+    <div class="main-content">
+        <% if(!bots.Status == "verified") { %>
+            <div class="container alert alert-danger" role="alert">
+                <%= member.username %> su bot aun no ha sido verificado. Por favor, espere a que algun staff lo verifique.
+            </div>
+        <%}%>
+    </div>
+</body>
+</html>

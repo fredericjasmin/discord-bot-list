@@ -1,0 +1,40 @@
+<%- include('partials/head') %>
+<%- include('partials/navbar') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobyList - Reviews</title>
+</head>
+<body>
+    <div class="container-reviews">
+        <div class="title-text">
+            <h1>Reseñas</h1>
+            <p>Conoce que opina la gente de nosotros!</hp>
+        </div>
+        <div class="reviews-row">
+            <% review.map(a => { %>
+            <div class="reviews-col">
+                    <div class="user-image-container">
+                        <img src="<%- a.image %>" alt="">
+                    </div>
+
+                    <div class="user-name">
+                        <p><%- a.name %></p>
+                    </div>
+
+                    <div class="review-content">
+                        <p><%- a.content %></p>
+                    </div>
+
+                    <div class="review-time">
+                        <p><%- a.createdAt %></p>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</body>
+</html>

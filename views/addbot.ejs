@@ -1,0 +1,34 @@
+<%- include('partials/head') %>
+<%- include('partials/navbar') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobyList</title>
+</head>
+<body>
+    <section class="form-bot">
+        <form method="post">
+            <h4><i class="fad fa-fingerprint"></i> Bot ID<span style="color: rgb(175, 22, 22)">*</span></h4>
+            <input class="controls" type="text" name="BotId" id="BotId">
+            <h4><i class="fad fa-fingerprint"></i> Owner ID<span style="color: rgb(175, 22, 22)">*</span></h4>
+            <input class="controls" type="text" name="OwnerID" id="OwnerID" value="<%= user.id %>" required="required" disabled/>
+            <h4><i class="fad fa-fingerprint"></i> Prefix<span style="color: rgb(175, 22, 22)">*</span></h4>
+            <input class="controls" type="text" name="BotPrefix" id="BotPrefix" required="required">
+            <h4><i class="fad fa-fingerprint"></i> Website<span style="color: rgb(175, 22, 22)">*</span></h4>
+            <input class="controls" type="text" name="Website" id="Website">
+            <h4><i class="fad fa-fingerprint"></i> Support<span style="color: rgb(175, 22, 22)">*</span></h4>
+            <input class="controls" type="text" name="GuildSupport" id="GuildSupport">
+            <h4><i class="fad fa-fingerprint"></i> Github<span style="color: rgb(175, 22, 22)">*</span></h4>
+            <input class="controls" type="text" name="Github" id="Github">
+            <h4><i class="fad fa-fingerprint"></i> Short Description<span style="color: rgb(175, 22, 22)">*</span></h4>
+            <input class="controls" type="text" name="shortDesc" id="shortDesc" maxlength="100">
+            <h4><i class="fad fa-fingerprint"></i> Long Description<span style="color: rgb(175, 22, 22)">*</span></h4>
+            <input class="controls" type="text" name="longDesc" id="longDesc" maxlength="250">
+            <button class="botons" type="submit">Enviar</button>
+        </form>
+    </section>
+</body>
+</html>

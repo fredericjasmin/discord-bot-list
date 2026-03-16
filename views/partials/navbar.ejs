@@ -1,0 +1,39 @@
+<div class="navbar">
+    <div class="container">
+        <div class="logo">
+            <h1>MobyList</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/" class="nav-button">Inicio</a></li>
+                <li><a href="#" class="nav-button">Equipo</a></li>
+                <li><a href="/feedbacks" class="nav-button">Reseñas</a></li>
+                <li><a href="/bots/add" class="nav-button">Añadir Bot</a></li>
+                <% if(user) { %>
+                   <% let guild = bot.guilds.cache.get(config.id).members.cache.get(user.id);
+                   if(guild){
+                    if(guild.roles.cache.get(roles.administrator) || guild.roles.cache.get(roles.moderator)) {
+                        %>
+                        <li><a class="nav-button" href="/admin">Admin panel</a></li>
+                   <% }} %>
+               <% } %>
+            </ul>
+            <% if(user) { %>
+                <div class="button dropdown">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="avatar" width="24" style="margin-top: -4px; border-radius: 50%" src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png"><%=user.username%><small>#<%=user.discriminator%></small>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="perfil-dropdown">
+                        <li><a class="butn" href="/user/<%= user.id %>"><i class='bx bxs-user' ></i> Perfil</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="butn" href="/logout"><i class='bx bx-log-out' ></i> Cerrar sesión</a></li>
+                    </ul>
+                </div>
+           <% } else { %>
+            <div class="button">
+                <a href="/login" class="nav-button">Login</a>
+            </div>
+       <% } %> 
+        </nav>
+    </div>
+</div>

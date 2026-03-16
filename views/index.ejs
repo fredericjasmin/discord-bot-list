@@ -1,0 +1,41 @@
+<%- include('partials/head') %>
+<%- include('partials/navbar') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobyList</title>
+</head>
+<body>
+    <div class="container">
+        <div class="cards__container">
+            <% bots.filter(a => a.Status == "verified").map(a => {%>
+    
+                <div class="ccard">
+                    <div class="card__header">
+                        <img class="bot-avatar" src="<%= a.BotAvatar %>" alt="<%= a.BotUsername %>">
+                        <h3 class="bot-username"><%= a.BotUsername %></h4>
+                    </div>
+                    <div class="card__body">
+                        <p class="bot-description"><%= a.shortDesc %></p>
+                    </div>
+                    <div class="card__footer">
+                        <div class="bot-buttons">
+                            <a class="bot-view" href="/bot/<%= a.BotId %>">Ver</a>
+                            <a class="bot-add" href="#">Añadir</a>
+                        </div>
+                        
+                        <div class="bot-info">
+                            <img class="author-pic" src="https://cdn.discordapp.com/avatars/<%= a.OwnerID %>/<%= a.OwnerAvatar %>?size=128" alt="<%= a.OwnerName %> avatar">
+                            <h4 class="author-username"><%= a.OwnerName %></h4>
+                        </div>
+                    </div>
+                </div>
+    
+            <% }) %>
+        </div>
+    </div>
+</body>
+</html>
